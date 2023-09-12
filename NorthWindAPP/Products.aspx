@@ -46,7 +46,11 @@
             <asp:GridView
                 ID="GridView1"
                 runat="server"
-                OnPageIndexChanging="GridView1_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None"
+                OnPageIndexChanging="GridView1_PageIndexChanging" 
+                CellPadding="4" 
+                ForeColor="#333333" 
+                GridLines="None"
+                EmptyDataText="Nenhum resultado corresponde a busca."
                 >
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
@@ -70,6 +74,9 @@
             <asp:AsyncPostBackTrigger ControlID="BtnDDLFilter" />
         </Triggers>
     </asp:UpdatePanel>
+    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+        <ProgressTemplate>Carregando...</ProgressTemplate>
+    </asp:UpdateProgress>
 
     <asp:SqlDataSource
         ID="SqlDataSourceProducts"
