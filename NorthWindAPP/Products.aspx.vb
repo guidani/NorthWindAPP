@@ -11,35 +11,8 @@
         prodName = If(Request.QueryString("ProductName") IsNot Nothing, Request.QueryString("ProductName").ToString, "")
         If Not IsPostBack Then
             ExecuteCommand()
-            'If suplierID <> "" And catID = "" And prodName = "" Then
-            '    'GridViewWithSuplier()
-            '    ExecuteCommand()
-            'ElseIf suplierID = "" And catID <> "" And prodName = "" Then
-            '    'GridViewWithCategory()
-            '    ExecuteCommand()
-            'ElseIf suplierID = "" And catID = "" And prodName <> "" Then
-            '    'GridViewWithProdName()
-            '    ExecuteCommand()
-            'ElseIf suplierID <> "" And catID <> "" And prodName = "" Then
-            '    'GridViewWithSuplierAndCategory()
-            '    ExecuteCommand()
-            'ElseIf suplierID <> "" And catID = "" And prodName <> "" Then
-            '    'GridViewWithSuplierAndProdName()
-            '    ExecuteCommand()
-            'ElseIf suplierID = "" And catID <> "" And prodName <> "" Then
-            '    'GridViewWithCategoryAndProdName()
-            '    ExecuteCommand()
-            'ElseIf suplierID <> "" And catID <> "" And prodName <> "" Then
-            '    'GridViewWithSuplierAndCategoryAndProdName()
-            '    ExecuteCommand()
-            'Else
-            '    'GridViewWithoutSuplierAndCategoryAndProdName()
-            '    ExecuteCommand()
-            'End If
         End If
     End Sub
-
-
 
     Protected Sub BtnPesquisa_Command(sender As Object, e As CommandEventArgs)
         Dim texto As String = LblPesquisa.Text
@@ -67,98 +40,11 @@
 
     Protected Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs)
         GridView1.PageIndex = e.NewPageIndex
-        'GridViewWithCategory()
-        ExecuteCommand()
-        'If suplierID = "" And catID <> "" And prodName = "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithCategory()
-        '    ExecuteCommand()
-        'ElseIf suplierID <> "" And catID = "" And prodName = "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithSuplier()
-        '    ExecuteCommand()
-        'ElseIf suplierID <> "" And catID <> "" And prodName = "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithSuplierAndCategory()
-        '    ExecuteCommand()
-        'ElseIf suplierID = "" And catID = "" And prodName <> "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithProdName()
-        '    ExecuteCommand()
-        'ElseIf suplierID <> "" And catID <> "" And prodName <> "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithSuplierAndCategoryAndProdName()
-        '    ExecuteCommand()
-        'ElseIf suplierID <> "" And catID = "" And prodName <> "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithSuplierAndProdName()
-        '    ExecuteCommand()
-        'ElseIf suplierID = "" And catID <> "" And prodName <> "" Then
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    'GridViewWithCategoryAndProdName()
-        '    ExecuteCommand()
-        'Else
-        '    GridView1.PageIndex = e.NewPageIndex
-        '    ExecuteCommand()
-        '    'GridViewWithoutSuplierAndCategoryAndProdName()
-        'End If
-    End Sub
-
-    Private Sub GridViewWithCategoryAndProdName()
-        Dim filterExpression = $"SupplierID IS NOT NULL and CategoryID = {catID} and ProductName LIKE '%{prodName}%'"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithSuplierAndProdName()
-        Dim filterExpression = $"SupplierID = {suplierID} and CategoryID IS NOT NULL and ProductName LIKE '%{prodName}%'"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithSuplierAndCategoryAndProdName()
-        Dim filterExpression = $"SupplierID = {suplierID} and CategoryID = {catID} and ProductName LIKE '%{prodName}%'"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithProdName()
-        Dim filterExpression = $"ProductName LIKE '%{prodName}%'"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithoutSuplierAndCategoryAndProdName()
-
-        Dim filterExpression = $"SupplierID IS NOT NULL and CategoryID IS NOT NULL and ProductName IS NOT NULL"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithSuplierAndCategory()
-
-        Dim filterExpression = $"SupplierID = {suplierID} and CategoryID = {catID}"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Private Sub GridViewWithSuplier()
-
-        Dim filterExpression = $"SupplierID = {suplierID} and CategoryID is not null"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
-        ExecuteCommand()
-    End Sub
-
-    Protected Sub GridViewWithCategory()
-
-        Dim filterExpression = $"SupplierID IS NOT NULL and CategoryID = {catID}"
-        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
         ExecuteCommand()
     End Sub
 
     Protected Sub ExecuteCommand()
         SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
-        'SqlDataSourceProducts.FilterExpression = filterExpression
         SqlDataSourceProducts.FilterExpression = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
         SqlDataSourceProducts.DataBind()
         GridView1.DataSource = SqlDataSourceProducts

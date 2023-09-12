@@ -8,6 +8,9 @@
 
     <div class="row">
         <h1>Search in GRIDVIEW - PRODUTOS</h1>
+<%--        <p><%= suplierID %></p>
+        <p><%= catID %></p>
+        <p><%= prodName %></p>--%>
     </div>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
