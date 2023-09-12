@@ -83,7 +83,6 @@
         runat="server"
         ConnectionString="<%$ ConnectionStrings:NorthWindDbConnectionString %>"
         >
-        <%--SelectCommand="SELECT [ProductID],[ProductName],[SupplierID],[CategoryID],[QuantityPerUnit],[UnitPrice],[UnitsInStock],[UnitsOnOrder],[ReorderLevel],[Discontinued]FROM [NorthWindDb].[dbo].[Products]"--%>
         <%--<FilterParameters >
             <asp:QueryStringParameter Name="SuplierID" QueryStringField="SuplierID" ConvertEmptyStringToNull="true"/>
             <asp:QueryStringParameter Name="CategorieID" QueryStringField="CategorieID" ConvertEmptyStringToNull="true"/>

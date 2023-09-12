@@ -9,38 +9,15 @@
         catID = If(Request.QueryString("CategorieID") IsNot Nothing, Request.QueryString("CategorieID").ToString, "")
         If Not IsPostBack Then
             If suplierID <> "" And catID = "" Then
-                SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
-                SqlDataSourceProducts.FilterExpression = $"SupplierID = {suplierID} and CategoryID is not null"
-                SqlDataSourceProducts.DataBind()
-                GridView1.DataSource = SqlDataSourceProducts
-                GridView1.AllowPaging = True
-                GridView1.DataBind()
-                UpdatePanel1.Update()
+                GridViewWithSuplier()
             ElseIf suplierID = "" And catID <> "" Then
-                SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
-                SqlDataSourceProducts.FilterExpression = $"SupplierID IS NOT NULL and CategoryID = {catID}"
-                SqlDataSourceProducts.DataBind()
-                GridView1.DataSource = SqlDataSourceProducts
-                GridView1.AllowPaging = True
-                GridView1.DataBind()
-                UpdatePanel1.Update()
+                GridViewWithCategory()
             ElseIf suplierID <> "" And catID <> "" Then
-                SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
-                SqlDataSourceProducts.FilterExpression = $"SupplierID = {suplierID} and CategoryID = {catID}"
-                SqlDataSourceProducts.DataBind()
-                GridView1.DataSource = SqlDataSourceProducts
-                GridView1.AllowPaging = True
-                GridView1.DataBind()
-                UpdatePanel1.Update()
+
+                GridViewWithSuplierAndCategory()
             Else
-                SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
-                SqlDataSourceProducts.FilterExpression = $"SupplierID IS NOT NULL and CategoryID IS NOT NULL"
-                SqlDataSourceProducts.Select(DataSourceSelectArguments.Empty)
-                SqlDataSourceProducts.DataBind()
-                GridView1.DataSource = SqlDataSourceProducts
-                GridView1.AllowPaging = True
-                GridView1.DataBind()
-                UpdatePanel1.Update()
+
+                GridViewWithoutSuplierAndCategory()
             End If
         End If
     End Sub
@@ -91,7 +68,6 @@
     Private Sub GridViewWithoutSuplierAndCategory()
         SqlDataSourceProducts.SelectCommand = $"SELECT [ProductID],[ProductName],[SupplierID],[CategoryID] FROM [NorthWindDb].[dbo].[Products]"
         SqlDataSourceProducts.FilterExpression = $"SupplierID IS NOT NULL and CategoryID IS NOT NULL"
-        'SqlDataSourceProducts.Select(DataSourceSelectArguments.Empty)
         SqlDataSourceProducts.DataBind()
         GridView1.DataSource = SqlDataSourceProducts
         GridView1.AllowPaging = True
