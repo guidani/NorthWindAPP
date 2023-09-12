@@ -96,7 +96,8 @@
 
     Private Sub GridViewWithSuplierAndCategoryAndProdName()
         Dim filterExpression = $"SupplierID = {suplierID} and CategoryID = {catID} and ProductName LIKE '%{prodName}%'"
-        ExecuteCommand(filterExpression)
+        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
+        ExecuteCommand(filterExpression2)
     End Sub
 
     Private Sub GridViewWithProdName()
@@ -107,12 +108,14 @@
     Private Sub GridViewWithoutSuplierAndCategoryAndProdName()
 
         Dim filterExpression = $"SupplierID IS NOT NULL and CategoryID IS NOT NULL and ProductName IS NOT NULL"
-        ExecuteCommand(filterExpression)
+        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
+        ExecuteCommand(filterExpression2)
     End Sub
 
     Private Sub GridViewWithSuplierAndCategory()
 
         Dim filterExpression = $"SupplierID = {suplierID} and CategoryID = {catID}"
+        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID {If(catID <> "", " = " + catID, " IS NOT NULL")} and ProductName {If(prodName <> "", " LIKE '%" + prodName + "%'", " IS NOT NULL")}"
         ExecuteCommand(filterExpression)
     End Sub
 
@@ -125,7 +128,8 @@
     Protected Sub GridViewWithCategory()
 
         Dim filterExpression = $"SupplierID IS NOT NULL and CategoryID = {catID}"
-        ExecuteCommand(filterExpression)
+        Dim filterExpression2 = $"SupplierID {If(suplierID <> "", " = " + suplierID, " IS NOT NULL ")} and CategoryID = {catID}"
+        ExecuteCommand(filterExpression2)
     End Sub
 
     Protected Sub ExecuteCommand(filterExpression As String)
@@ -142,5 +146,9 @@
         If prodName <> "" Then
             TxtBoxPesquisa.Text = prodName.ToString
         End If
+    End Sub
+
+    Protected Sub BtnResetFilter_Click(sender As Object, e As EventArgs)
+        Response.Redirect($"Products.aspx")
     End Sub
 End Class
