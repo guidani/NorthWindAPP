@@ -68,7 +68,6 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="BtnPesquisa" />
             <asp:AsyncPostBackTrigger ControlID="GridView1" />
-            <%--<asp:PostBackTrigger ControlID="GridView1"/>--%>
             <asp:AsyncPostBackTrigger ControlID="DDLSuplier" />
             <asp:AsyncPostBackTrigger ControlID="DDLCategories" />
             <asp:AsyncPostBackTrigger ControlID="BtnDDLFilter" />
@@ -83,10 +82,11 @@
         runat="server"
         ConnectionString="<%$ ConnectionStrings:NorthWindDbConnectionString %>"
         >
-        <%--<FilterParameters >
-            <asp:QueryStringParameter Name="SuplierID" QueryStringField="SuplierID" ConvertEmptyStringToNull="true"/>
-            <asp:QueryStringParameter Name="CategorieID" QueryStringField="CategorieID" ConvertEmptyStringToNull="true"/>
-        </FilterParameters>--%>
+        <FilterParameters >
+            <%--<asp:ControlParameter ControlID="TxtBoxPesquisa" ConvertEmptyStringToNull="true" Name="ProductName" PropertyName="Text"/>--%>
+            <%--<asp:QueryStringParameter Name="SuplierID" QueryStringField="SuplierID" ConvertEmptyStringToNull="true"/>
+            <asp:QueryStringParameter Name="CategorieID" QueryStringField="CategorieID" ConvertEmptyStringToNull="true"/>--%>
+        </FilterParameters>
     </asp:SqlDataSource>
     <%-- para os dropdowns --%>
     <asp:SqlDataSource
@@ -99,11 +99,4 @@
         ConnectionString="<%$ ConnectionStrings:NorthWindDbConnectionString %>" 
         ID="SqlDataSourceCategories" 
         runat="server"></asp:SqlDataSource>
-    <%--    <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="SqlDataSourceProducts">
-        <ProgressTemplate>
-            <div class="jumbotron">
-                Aguarde...
-            </div>
-        </ProgressTemplate>
-    </asp:UpdateProgress>--%>
 </asp:Content>
