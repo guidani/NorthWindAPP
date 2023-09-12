@@ -41,7 +41,7 @@
             <div class="row">
                 <asp:Label ID="LblPesquisa" runat="server" Text="Pesquisa"></asp:Label>
                 <asp:TextBox ID="TxtBoxPesquisa" runat="server"></asp:TextBox>
-                <asp:Button ID="BtnPesquisa" runat="server" Text="Pesquisa" CommandName="Filter" OnCommand="BtnPesquisa_Command" />
+                <asp:Button ID="BtnPesquisa" runat="server" Text="Pesquisa" CommandName="Filter" OnCommand="BtnPesquisa_Command" OnClick="BtnDDLFilter_Click" OnLoad="BtnPesquisa_Load"/>
             </div>
             <asp:GridView
                 ID="GridView1"
